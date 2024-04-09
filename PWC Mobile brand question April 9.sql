@@ -1,0 +1,25 @@
+CREATE TABLE MOBILE
+(
+BRAND VARCHAR(25),
+SALES INT)
+
+
+INSERT INTO MOBILE (BRAND,SALES)
+VALUES
+('Oppo',600),
+('Vivo',500),
+('Apple',1000),
+('LG',800),
+('Samsung',1000),
+('Motorola',900);
+
+-- Top 3 Sales Rank of Mobile Brands--
+
+
+WITH CTE AS
+(
+SELECT *,
+	ROW_NUMBER() OVER (ORDER BY SALES DESC)AS RN
+	FROM MOBILE
+)
+SELECT * FROM CTE WHERE RN <=3
